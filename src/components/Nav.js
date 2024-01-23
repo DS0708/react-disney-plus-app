@@ -1,9 +1,28 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components'
 
 const Nav = () => {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll',()=>{
+      if (window.scrollY > 50){
+        setShow(true);
+      }else {
+        setShow(false);
+      }
+      console.log("show",show);
+    })
+  
+    return () => {
+      window.removeEventListener('scroll',()=> {});
+    }
+  // eslint-disable-next-line
+  }, [])
+  
+
   return (
-    <NavWrapper>
+    <NavWrapper show={show}>
       <Logo>
         <img
           alt='Disney Plus Logo'
@@ -23,7 +42,7 @@ const NavWrapper = styled.nav`
   left: 0;
   right: 0;
   height: 70px;
-  background-color: #090b13;
+  background-color: ${props => props.show ? '#090b13' :'transparent' };
   display: flex;
   justify-content: space-between;
   align-items: center;
