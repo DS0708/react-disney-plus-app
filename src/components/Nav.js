@@ -11,7 +11,6 @@ const Nav = () => {
       }else {
         setShow(false);
       }
-      console.log("show",show);
     })
   
     return () => {
